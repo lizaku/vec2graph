@@ -127,7 +127,7 @@ def vec2graph(
     :param library: path to D3.js library, can be 'web' (link to version at the D3.js site)
            or 'local' (file in the directory with generated HTML, if not present,
            it is downloaded from web).
-    :return: list of page names
+    :return: None
     """
     d3webpath = "https://d3js.org/d3.v3.min.js"
     if threshold < 1:
@@ -181,4 +181,4 @@ def vec2graph(
                 )
             )
 
-    return pages
+    return 
