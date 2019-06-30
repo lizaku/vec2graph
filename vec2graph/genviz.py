@@ -3,8 +3,9 @@ import os
 import json
 import requests
 from requests.exceptions import HTTPError
-from smart_open import smart_open
+from smart_open import open
 from shutil import copyfile
+import pkg_resources
 
 
 def get_data(model, word, depth=0, topn=10):
@@ -95,7 +96,8 @@ def render(
     :param d3path: path to the JS file with D3.js library
     :return: string to be written as an output
     """
-    html = smart_open('genviz.html', 'r').read()
+    html_template = pkg_resources.resource_filename('vec2graph', 'data/genviz.html')
+    html = open(html_template, 'r').read()
     return (
         html.replace("d3pathplaceholder", d3path)
             .replace("wordplaceholder", word)
@@ -108,7 +110,7 @@ def render(
     )
 
 
-def vec2graph(
+def visualize(
         path, model, words, depth=0, topn=10, threshold=0, edge=1, sep=False, library="web"
 ):
     """
@@ -162,11 +164,12 @@ def vec2graph(
                 with open(fullpath, "w", encoding="utf-8") as d3:
                     d3.write(response.text)
 
-    copyfile('genviz.js', os.path.join(path, 'genviz.js'))
+    genviz_js = pkg_resources.resource_filename('vec2graph', 'data/genviz.js')
+    copyfile(genviz_js, os.path.join(path, 'genviz.js'))
     for page in pages:
         fname = "".join([x for x in page])
         filepath = os.path.join(path, fname + ".html")
-        with smart_open(filepath, "w") as f:
+        with open(filepath, "w") as f:
             f.write(
                 render(
                     page,
@@ -180,4 +183,5 @@ def vec2graph(
                 )
             )
 
-    return 
+    print('Visualizations written to', path, file=sys.stderr)
+    return
