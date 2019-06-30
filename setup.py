@@ -6,7 +6,8 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name="vec2graph",
     version="0.0.1",
-    author="Nadezda Katricheva, Alyaxey Yaskevich, Anastasiya Lisitsina, Tamara Zhordaniya, Andrey Kutuzov, Elizaveta Kuzmenko",
+    author="Nadezda Katricheva, Alyaxey Yaskevich, Anastasiya Lisitsina, Tamara Zhordaniya, "
+           "Andrey Kutuzov, Elizaveta Kuzmenko",
     author_email="lizaku77@gmail.com",
     description="Mini-library for producing graph visualizations from embedding models",
     long_description=long_description,

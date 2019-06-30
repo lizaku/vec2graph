@@ -23,7 +23,6 @@ def get_data(model, word, depth=0, topn=10):
         print(word + " is not in model", file=sys.stderr)
         return datum
     res = get_most_similar(model, word, topn)
-    print(res)
     datum[word] = res[0]
     new_datum = get_neighbors(model, res[1], depth, topn)
     datum = {**datum, **new_datum}
@@ -45,7 +44,7 @@ def get_neighbors(model, stack, depth, topn):
         for neighbor in stack:
             res = get_most_similar(model, neighbor, topn)
             new_datum[neighbor] = res[0]
-            new_datum = get_neighbors(model, new_datum, res[1], depth, topn)
+            new_datum = get_neighbors(model, new_datum, depth, topn)
     return new_datum
 
 

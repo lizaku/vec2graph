@@ -1,0 +1,2 @@
+gensim
+smart_open
