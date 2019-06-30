@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="vec2graph",
-    version="0.2.3",
+    version="0.2.4",
     author="Nadezda Katricheva, Alyaxey Yaskevich, Anastasiya Lisitsina, Tamara Zhordaniya, "
            "Andrey Kutuzov, Elizaveta Kuzmenko",
     author_email="andreku@ifi.uio.no",
@@ -16,7 +16,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     package_data={'vec2graph': ['data/genviz.html', 'data/genviz.js']},
     python_requires='>=3',
-    install_requires=['gensim', 'smart_open'],
+    install_requires=['gensim>3.5', 'smart_open>1.8', 'requests'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
