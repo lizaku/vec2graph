@@ -147,6 +147,8 @@ def visualize(
     pages = list(data.keys())
 
     if pages:
+        if not os.path.exists(path):
+            os.makedirs(path)
         d3path = d3webpath
         if library == "local":
             d3path = "d3.v3.min.js"
