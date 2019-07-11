@@ -146,42 +146,43 @@ def visualize(
 
     pages = list(data.keys())
 
-    d3path = d3webpath
-    if library == "local":
-        d3path = "d3.v3.min.js"
-        fullpath = os.path.join(path, d3path)
+    if pages:
+        d3path = d3webpath
+        if library == "local":
+            d3path = "d3.v3.min.js"
+            fullpath = os.path.join(path, d3path)
 
-        if not os.path.isfile(fullpath):
-            try:
-                response = requests.get(d3webpath)
-                response.raise_for_status()
-            except HTTPError as err:
-                print(err, file=sys.stderr)
-            except Exception as err:
-                print(err, file=sys.stderr)
-            else:
-                response.encoding = "utf-8"
-                with open(fullpath, "w", encoding="utf-8") as d3:
-                    d3.write(response.text)
+            if not os.path.isfile(fullpath):
+                try:
+                    response = requests.get(d3webpath)
+                    response.raise_for_status()
+                except HTTPError as err:
+                    print(err, file=sys.stderr)
+                except Exception as err:
+                    print(err, file=sys.stderr)
+                else:
+                    response.encoding = "utf-8"
+                    with open(fullpath, "w", encoding="utf-8") as d3:
+                        d3.write(response.text)
 
-    genviz_js = pkg_resources.resource_filename('vec2graph', 'data/genviz.js')
-    copyfile(genviz_js, os.path.join(path, 'genviz.js'))
-    for page in pages:
-        fname = "".join([x for x in page])
-        filepath = os.path.join(path, fname + ".html")
-        with open(filepath, "w") as f:
-            f.write(
-                render(
-                    page,
-                    data[page],
-                    pages,
-                    topn=topn,
-                    threshold=limit,
-                    edge=edge,
-                    sep=sep,
-                    d3path=d3path,
+        genviz_js = pkg_resources.resource_filename('vec2graph', 'data/genviz.js')
+        copyfile(genviz_js, os.path.join(path, 'genviz.js'))
+        for page in pages:
+            fname = "".join([x for x in page])
+            filepath = os.path.join(path, fname + ".html")
+            with open(filepath, "w") as f:
+                f.write(
+                    render(
+                        page,
+                        data[page],
+                        pages,
+                        topn=topn,
+                        threshold=limit,
+                        edge=edge,
+                        sep=sep,
+                        d3path=d3path,
+                    )
                 )
-            )
 
-    print('Visualizations written to', path, file=sys.stderr)
-    return
+        print('Visualizations written to', path, file=sys.stderr)
+    return pages
