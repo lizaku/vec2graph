@@ -45,7 +45,7 @@ def get_neighbors(model, datum, stack, depth, topn):
             res = get_most_similar(model, neighbor, topn)
             datum[neighbor] = res[0]
             get_neighbors(model, datum, res[1], depth, topn)
-    return
+    return datum
 
 
 def get_most_similar(model, word, topn=10):
@@ -135,6 +135,10 @@ def visualize(
     else:
         limit = threshold / 100
     data = {}
+    depth = int(depth)
+    if depth < 0:
+        print('Depth must be a positive integer!', file=sys.stderr)
+        exit()
     if isinstance(words, list):
         for word in words:
             data.update(get_data(model, word, depth=depth, topn=topn))
