@@ -25,28 +25,27 @@ def get_data(model, word, depth=0, topn=10):
         return datum
     res = get_most_similar(model, word, topn)
     datum[word] = res[0]
-    new_datum = get_neighbors(model, res[1], depth, topn)
-    datum = {**datum, **new_datum}
+    get_neighbors(model, datum, res[1], depth, topn)
     return datum
 
 
-def get_neighbors(model, stack, depth, topn):
+def get_neighbors(model, datum, stack, depth, topn):
     """
     Extracts neighbors of a given word
     :param model: w2v model
+    :param datum: updated dictionary containing the data to be plotted
     :param stack: list, neighbors of a word
     :param depth: integer, if we want to create graphs for neighbors, specifies the depth
     :param topn: integer, number of neighbors to extract for each word
     :return: None
     """
-    new_datum = {}
     if depth > 0:
         depth -= 1
         for neighbor in stack:
             res = get_most_similar(model, neighbor, topn)
-            new_datum[neighbor] = res[0]
-            new_datum = get_neighbors(model, new_datum, depth, topn)
-    return new_datum
+            datum[neighbor] = res[0]
+            get_neighbors(model, datum, res[1], depth, topn)
+    return
 
 
 def get_most_similar(model, word, topn=10):
