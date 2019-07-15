@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="vec2graph",
-    version="0.2.4",
+    version="0.3.0",
     author="Nadezda Katricheva, Alyaxey Yaskevich, Anastasiya Lisitsina, Tamara Zhordaniya, "
            "Andrey Kutuzov, Elizaveta Kuzmenko",
     author_email="andreku@ifi.uio.no",
