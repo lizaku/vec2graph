@@ -38,3 +38,4 @@ Code is available at https://github.com/lizaku/vec2graph
 - **library**: *str, default 'web'*  
       the path to D3.js library, can be 'web' (link to version at the D3.js site) or 'local' (file in the directory with generated HTML, if not present, it is downloaded from web).
 
+We provide an [example script](https://github.com/lizaku/vec2graph/blob/master/vec2graph/example_usage.py) to make it easier to start using _vec2graph_ right now.
