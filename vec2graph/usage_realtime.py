@@ -49,7 +49,7 @@ while True:
     word, lim, nr_n = text.strip().split()
     if '_' not in word:
         word = word + '_NOUN'
-    visualize(
+    out = visualize(
         args.output,
         model,
         word,
@@ -57,6 +57,9 @@ while True:
         threshold=float(lim),
         sep=args.sep
     )
-    print('Visualization generated!')
-    filepath = os.path.join(args.output, word + ".html")
-    webbrowser.open('file://' + os.path.realpath(filepath))
+    if out:
+        print('Visualization generated!')
+        filepath = os.path.join(args.output, word + ".html")
+        webbrowser.open('file://' + os.path.realpath(filepath))
+    else:
+        print('Word not found in the model')

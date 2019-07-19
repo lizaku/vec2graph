@@ -24,7 +24,7 @@ def get_data(model, word, depth=0, topn=10):
         raise ValueError("Empty string!")
     if word not in model.vocab:
         print(word + " is not in model", file=sys.stderr)
-        return datum
+        return None
     res = get_most_similar(model, word, topn)
     datum[word] = res[0]
     get_neighbors(model, datum, res[1], depth, topn)
@@ -146,6 +146,8 @@ def visualize(
             data.update(get_data(model, word, depth=depth, topn=topn))
     elif isinstance(words, str):
         data = get_data(model, words, depth=depth, topn=topn)
+        if not data:
+            return 'Word not found'
     else:
         raise ValueError("Wrong type!")
 
