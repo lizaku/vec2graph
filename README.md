@@ -1,6 +1,8 @@
 # vec2graph
 Mini-library for producing graph visualizations from embedding models
 
+![Logo](https://raw.githubusercontent.com/lizaku/vec2graph/master/vec2graph/data/luk.png)
+
 Code is available at https://github.com/lizaku/vec2graph
 
 # Usage
