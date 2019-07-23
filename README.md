@@ -3,6 +3,11 @@ Mini-library for producing graph visualizations from embedding models
 
 ![Logo](https://raw.githubusercontent.com/lizaku/vec2graph/master/vec2graph/data/luk.png)
 
+See the detailed description in the paper:
+
+[Vec2graph: a Python library for visualizing word embeddings as graphs](https://www.academia.edu/39888277/Vec2graph_a_Python_library_for_visualizing_word_embeddings_as_graphs)
+by Nadezhda Katricheva, Alyaxey Yaskevich, Anastasiya Lisitsyna, Tamara Zhordaniya, Andrey Kutuzov, and Elizaveta Kuzmenko.
+
 Code is available at https://github.com/lizaku/vec2graph
 
 # Usage
